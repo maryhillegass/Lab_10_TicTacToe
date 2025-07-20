@@ -96,4 +96,43 @@ public class TicTacToe {
             return true;
         return false;
     }
+
+    /*
+    Tests for a tie...needs testing
+     */
+    private static boolean isTie(){
+        boolean oPresent = false;
+        boolean xPresent = false;
+        //rows
+        for (int i = 0; i < ROWS; i++) {
+            oPresent = board[i][0].equals("O") || board[i][1].equals("O") || board[i][2].equals("O");
+            xPresent = board[i][0].equals("X") || board[i][1].equals("X") || board[i][2].equals("X");
+            if (!oPresent || !xPresent)
+                return false;
+
+        }
+        //columns
+        for (int i = 0; i < COLS; i++) {
+            oPresent = board[0][i].equals("O") || board[1][i].equals("O") || board[2][i].equals("O");
+            xPresent = board[0][i].equals("X") || board[1][i].equals("X") || board[2][i].equals("X");
+            if (!oPresent || !xPresent)
+                return false;
+        }
+        //Diagonal 1
+        oPresent = board[0][0].equals("O") || board[1][1].equals("O") || board[2][2].equals("O");
+        xPresent = board[0][0].equals("X") || board[1][1].equals("X") || board[2][2].equals("X");
+        if (!oPresent || !xPresent)
+            return false;
+
+        //Diagonal 2
+        oPresent = board[0][2].equals("O") || board[1][1].equals("O") || board[2][0].equals("O");
+        xPresent = board[0][2].equals("X") || board[1][1].equals("X") || board[2][0].equals("X");
+        if (!oPresent || !xPresent)
+            return false;
+
+        //All ties are present
+        return true;
+
+
+    }
 }
