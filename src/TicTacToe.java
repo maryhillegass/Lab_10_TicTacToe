@@ -1,18 +1,31 @@
+import java.util.Scanner;
+
 public class TicTacToe {
     private static final int ROWS = 3;
     public static final int COLS = 3;
     private static String board [][] = new String[ROWS][COLS];
 
     public static void main(String[] args) {
-        clearBoard();
-        board[0][2] = "O";
-        board[1][1] = "O";
-        board[2][0] = "O";
-        System.out.println("Should be a win for O: " + isWin("O"));
-        display();
-        clearBoard();
-        display();
-        System.out.println("Should be a loss for O: " + isWin("O"));
+        Scanner in = new Scanner(System.in);
+        boolean done = false;
+        do{
+            //clear the board
+            clearBoard();
+            //set player to X
+            String player = "X";
+            //get coordinates [1-3] for row and col
+            int row = SafeInput.getRangedInt(in,"Enter row: ", 1, 3);
+            int col = SafeInput.getRangedInt(in,"Enter column: ", 1, 3);
+            //convert to indices by subtracting 1
+            //loop until they are a valid move
+            //record the valid move
+            //increment move counter
+            //if possible for win or tie check for it (win 5 moves, tie 7)
+            //If win or tie announce and ask players to play again
+            //Toggle the player
+        } while !done;
+
+
 
     }
 
