@@ -8,11 +8,11 @@ public class TicTacToe {
         board[0][2] = "O";
         board[1][1] = "O";
         board[2][0] = "O";
-        System.out.println("Should be a win for O: " + isDiagonalWin("O"));
+        System.out.println("Should be a win for O: " + isWin("O"));
         display();
         clearBoard();
         display();
-        System.out.println("Should be a loss for O: " + isDiagonalWin("O"));
+        System.out.println("Should be a loss for O: " + isWin("O"));
 
     }
 
@@ -57,7 +57,7 @@ public class TicTacToe {
     Checks all win conditions
      */
     private static boolean isWin(String player){
-        return false;
+        return isDiagonalWin(player) || isColWin(player) || isRowWin(player);
     }
 
     /*
