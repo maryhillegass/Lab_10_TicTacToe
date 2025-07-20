@@ -8,6 +8,8 @@ public class TicTacToe {
         display();
         board[1][1] = "O";
         board[0][0] = "x";
+        System.out.println("Valid move 11 should be false: " + isValidMove(1,1));
+        System.out.println("Valid move 10 should be true: " + isValidMove(1,0));
         display();
         clearBoard();
         display();
@@ -40,6 +42,11 @@ public class TicTacToe {
                 System.out.printf("\n------------");
             System.out.println("");
         }
+    }
+
+    private static boolean isValidMove(int row, int col){
+        boolean validMove = board[row][col].equals(" ");
+        return validMove;
     }
 
 }
