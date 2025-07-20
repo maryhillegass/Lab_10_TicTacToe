@@ -5,31 +5,15 @@ public class TicTacToe {
 
     public static void main(String[] args) {
         clearBoard();
-        display();
+        board[0][2] = "O";
         board[1][1] = "O";
-        board[0][0] = "X";
-        board[1][0] = "X";
-        board[2][0] = "X";
-        board[0][1] = "O";
-        board[2][1] = "O";
+        board[2][0] = "O";
+        System.out.println("Should be a win for O: " + isDiagonalWin("O"));
         display();
-        System.out.println("Column 1 should be a win for O: " + isColWin("O"));
-        System.out.println("Column 0 should be a win for X: " + isColWin("X"));
-
         clearBoard();
-
-        board[0][0] = "X";
-        board[0][1] = "X";
-        board[0][2] = "X";
-        System.out.println("Should be a loss for O: " + isRowWin("O"));
-        board[1][0] = "O";
-        board[1][1] = "O";
-        board[1][2] = "O";
-        System.out.println("Row 0 should be a win for X: " + isRowWin("X"));
-        System.out.println("Row 1 should be a win for O: " + isRowWin("O"));
-
-
         display();
+        System.out.println("Should be a loss for O: " + isDiagonalWin("O"));
+
     }
 
     /*
@@ -97,6 +81,19 @@ public class TicTacToe {
                 return true;
             }
         }
+        return false;
+    }
+
+    /*
+    Checks both diagonals for a player win
+    */
+    private static boolean isDiagonalWin(String player){
+        //first diagonal
+        if (board[0][0].equals(player) && board[1][1].equals(player) && board[2][2].equals(player))
+            return true;
+        //Second Diagonal
+        if (board[0][2].equals(player) && board[1][1].equals(player) && board[2][0].equals(player))
+            return true;
         return false;
     }
 }
