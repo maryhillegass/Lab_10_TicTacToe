@@ -8,22 +8,63 @@ public class TicTacToe {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         boolean done = false;
-        do{
+        do{ //full reset
+
             //clear the board
             clearBoard();
             //set player to X
             String player = "X";
-            //get coordinates [1-3] for row and col
-            int row = SafeInput.getRangedInt(in,"Enter row: ", 1, 3);
-            int col = SafeInput.getRangedInt(in,"Enter column: ", 1, 3);
-            //convert to indices by subtracting 1
-            //loop until they are a valid move
-            //record the valid move
-            //increment move counter
-            //if possible for win or tie check for it (win 5 moves, tie 7)
-            //If win or tie announce and ask players to play again
-            //Toggle the player
-        } while !done;
+            int moveCounter = 0;
+            do { // game
+                done = false;
+                int row;
+                int col;
+                System.out.printf("\nPlayer %s is up!", player);
+                do {//valid move
+                    //get coordinates [1-3] for row and col and subtract 1
+                    display();
+                    row = SafeInput.getRangedInt(in, "\nEnter row: ", 1, 3) - 1;
+                    col = SafeInput.getRangedInt(in, "Enter column: ", 1, 3) - 1;
+                    //loop until they are a valid move
+                    done = isValidMove(row, col);
+                    if (!done){
+                        System.out.printf("Player %s, please enter a valid move!\n", player);
+                    }
+                    }while (!done);
+                done = false;
+                //record the valid move
+                board[row][col] = player;
+                //increment move counter
+                moveCounter++;
+                //if possible for win or tie check for it (win 5 moves, tie 7)
+                if (moveCounter >= 5){
+                    done = isWin(player);
+                    if(done){
+                        System.out.printf("\nPlayer %s is the winner!\n", player);
+                        display();
+                    }
+                    if (moveCounter >= 7 && !done && isTie()){
+                        System.out.println("\nIt's a tie!\n");
+                        done= true;
+                        display();
+                    }
+                }
+                //If win or tie announce and ask players to play again
+                if (done){
+                    if(SafeInput.getYNConfirm(in, "Would you like to play again?")){
+                        done = false;
+                        break;
+                    }
+
+                }
+                //Toggle the player
+                if (player.equals("X"))
+                    player = "O";
+                else
+                    player = "X";
+            } while (!done);
+
+        } while (!done);
 
 
 
